@@ -1,7 +1,7 @@
-package com.github.groovinchip.macosuiintellij.services
+package dev.groovinchip.macosintellij.groovinchip.macosuiintellij.services
 
 import com.intellij.openapi.project.Project
-import com.github.groovinchip.macosuiintellij.MyBundle
+import dev.groovinchip.macosintellij.groovinchip.macosuiintellij.MyBundle
 
 class MyProjectService(project: Project) {
 

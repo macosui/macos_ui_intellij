@@ -1,18 +1,21 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.groovinchip.macosuiintellij</id>
+    <id>dev.groovinchip.macosuiintellij</id>
     <name>macos_ui_intellij</name>
-    <vendor>groovinchip</vendor>
+    <vendor>GroovinChip</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.groovinchip.macosuiintellij.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.groovinchip.macosuiintellij.services.MyProjectService"/>
+        <defaultLiveTemplates file="/liveTemplates/macos_ui.xml"/>
+        <liveTemplateContext
+                implementation="dev.groovinchip.macosintellij.liveTemplates.MacosUIContext"/>
+        <applicationService serviceImplementation="dev.groovinchip.macosintellij.groovinchip.macosuiintellij.services.MyApplicationService"/>
+        <projectService serviceImplementation="dev.groovinchip.macosintellij.groovinchip.macosuiintellij.services.MyProjectService"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.groovinchip.macosuiintellij.listeners.MyProjectManagerListener"
+        <listener class="dev.groovinchip.macosintellij.groovinchip.macosuiintellij.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 </idea-plugin>

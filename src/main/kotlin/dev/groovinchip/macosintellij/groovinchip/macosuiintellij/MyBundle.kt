@@ -1,4 +1,4 @@
-package com.github.groovinchip.macosuiintellij
+package dev.groovinchip.macosintellij.groovinchip.macosuiintellij
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templateSet group="macos_ui">
+  <template
+      name="imui"
+      value="import 'package:flutter/cupertino.dart';&#10;import 'package:macos_ui/macos_ui.dart';&#10;"
+      description="Import macos_ui"
+      toReformat="true"
+      toShortenFQNames="true">
+    <context>
+      <option name="DART_TOPLEVEL" value="true"/>
+    </context>
+  </template>
+  <template
+      name="muitest"
+      value="import 'package:flutter_test/flutter_test.dart';&#10;import 'package:macos_ui/macos_ui.dart';&#10;import 'package:macos_ui/src/library.dart';&#10;&#10;void main() {&#10;  group('$WIDGETNAME$ tests', () {&#10;    testWidgets(&#10;      '$TESTDESCRIPTION$',&#10;      (tester) async {&#10;        await tester.pumpWidget(&#10;          MacosApp(&#10;            home: MacosWindow(&#10;              child: MacosScaffold(&#10;                children: [&#10;                  ContentArea(&#10;                    builder: (context, scrollController) {&#10;                      return $WIDGET$;&#10;                    },&#10;                  ),&#10;                ],&#10;              ),&#10;            ),&#10;          ),&#10;        );&#10;&#10;        final widget = find.byType($WIDGETTYPE$);&#10;        expect(widget, findsOneWidget);&#10;      },&#10;    );&#10;  });&#10;}$END$"
+      description="Create a new macos_ui widget test"
+      toReformat="true"
+      toShortenFQNames="true">
+    <variable name="WIDGETNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TESTDESCRIPTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="WIDGET" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="WIDGETTYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true"/>
+    </context>
+  </template>
+</templateSet>

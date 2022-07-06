@@ -1,9 +1,9 @@
-package com.github.groovinchip.macosuiintellij.listeners
+package dev.groovinchip.macosintellij.groovinchip.macosuiintellij.listeners
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import com.github.groovinchip.macosuiintellij.services.MyProjectService
+import dev.groovinchip.macosintellij.groovinchip.macosuiintellij.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

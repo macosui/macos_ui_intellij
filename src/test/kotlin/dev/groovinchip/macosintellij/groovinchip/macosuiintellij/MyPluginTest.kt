@@ -1,4 +1,4 @@
-package com.github.groovinchip.macosuiintellij
+package dev.groovinchip.macosintellij.groovinchip.macosuiintellij
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile
