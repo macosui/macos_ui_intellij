@@ -1,7 +1,2 @@
-<!-- Keep a Changelog guide -> https://keepachangelog.com -->
-
-# macos_ui_intellij Changelog
-
-## [Unreleased]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+# 0.0.1
+* Initial release
