@@ -1,27 +1,163 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <templateSet group="macos_ui">
-  <template
-      name="imui"
-      value="import 'package:flutter/cupertino.dart';&#10;import 'package:macos_ui/macos_ui.dart';&#10;"
-      description="Import macos_ui"
-      toReformat="true"
-      toShortenFQNames="true">
+  <template name="imui"
+            value="import 'package:flutter/cupertino.dart';&#10;import 'package:macos_ui/macos_ui.dart';$END$"
+            description="import macos_ui" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muitest"
+            value="import 'package:flutter_test/flutter_test.dart';&#10;import 'package:macos_ui/macos_ui.dart';&#10;import 'package:macos_ui/src/library.dart';&#10;&#10;void main() {&#10;  group('$WIDGETNAME$ tests', () {&#10;    testWidgets(&#10;      '$TESTDESCRIPTION$',&#10;      (tester) async {       &#10;        await tester.pumpWidget(&#10;          MacosApp(&#10;            home: MacosWindow(&#10;              child: MacosScaffold(&#10;                children: [&#10;                  ContentArea(&#10;                    builder: (context, scrollController) {&#10;                      return $WIDGET$;&#10;                    },&#10;                  ),&#10;                ],&#10;              ),&#10;            ),&#10;          ),&#10;        );&#10;        &#10;        final widget = find.byType($WIDGETTYPE$);&#10;        expect(widget, findsOneWidget);&#10;      },&#10;    );&#10;  });&#10;}$END$"
+            description="New macos_ui widget test" toReformat="true" toShortenFQNames="true">
+    <variable name="WIDGETNAME" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="TESTDESCRIPTION" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="WIDGET" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="WIDGETTYPE" expression="" defaultValue="" alwaysStopAt="true"/>
     <context>
       <option name="DART_TOPLEVEL" value="true"/>
     </context>
   </template>
-  <template
-      name="muitest"
-      value="import 'package:flutter_test/flutter_test.dart';&#10;import 'package:macos_ui/macos_ui.dart';&#10;import 'package:macos_ui/src/library.dart';&#10;&#10;void main() {&#10;  group('$WIDGETNAME$ tests', () {&#10;    testWidgets(&#10;      '$TESTDESCRIPTION$',&#10;      (tester) async {&#10;        await tester.pumpWidget(&#10;          MacosApp(&#10;            home: MacosWindow(&#10;              child: MacosScaffold(&#10;                children: [&#10;                  ContentArea(&#10;                    builder: (context, scrollController) {&#10;                      return $WIDGET$;&#10;                    },&#10;                  ),&#10;                ],&#10;              ),&#10;            ),&#10;          ),&#10;        );&#10;&#10;        final widget = find.byType($WIDGETTYPE$);&#10;        expect(widget, findsOneWidget);&#10;      },&#10;    );&#10;  });&#10;}$END$"
-      description="Create a new macos_ui widget test"
-      toReformat="true"
-      toShortenFQNames="true">
-    <variable name="WIDGETNAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="TESTDESCRIPTION" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="WIDGET" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="WIDGETTYPE" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="muiapp"
+            value="MacosApp(&#10;  theme: MacosThemeData.light(),&#10;  darkTheme: MacosThemeData.dark(),&#10;  themeMode: ThemeMode.system,&#10;  home: $HOME$,&#10;),$END$"
+            description="Create a new MacosApp" toReformat="true" toShortenFQNames="true">
+    <variable name="HOME" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
     <context>
-      <option name="DART_TOPLEVEL" value="true"/>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiappw"
+            value="class $CLASS$ extends StatelessWidget {&#10;  const $CLASS$({super.key});&#10;  &#10;  @override&#10;  Widget build(BuildContext context) {&#10;    return MacosApp(&#10;      theme: MacosThemeData.light(),&#10;      darkTheme: MacosThemeData.dark(),&#10;      themeMode: ThemeMode.system,&#10;      home: $HOME$,&#10;    );&#10;  }&#10;}$END$"
+            description="Create a new MacosApp within a Widget class" toReformat="true" toShortenFQNames="true">
+    <variable name="CLASS" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <variable name="HOME" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiwin" value="MacosWindow(&#10;  child: $CHILD$,&#10;),$END$" description="Create a new Macoswindow"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="CHILD" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiwins"
+            value="class $CLASS$ extends StatefulWidget {&#10;  const $CLASS$({super.key});&#10;  @override&#10;  State&lt;$CLASS$&gt; createState() =&gt; _$CLASS$State();&#10;}&#10;&#10;class _$CLASS$State extends State&lt;$CLASS$&gt; {&#10;  int pageIndex = 0;&#10;&#10;  @override&#10;  Widget build(BuildContext context) {&#10;    return MacosWindow(&#10;      sidebar: Sidebar(&#10;        minWidth: $MINWIDTH$,&#10;        startWidth: $STARTWIDTH$,&#10;        builder: (context, scrollController) {&#10;          return SidebarItems(&#10;            currentIndex: pageIndex,&#10;            onChanged: (i) =&gt; setState(() =&gt; pageIndex = i),&#10;            scrollController: scrollController,&#10;            items: const [&#10;              SidebarItem(&#10;                leading: MacosIcon(CupertinoIcons.$ICON$),&#10;                label: Text('$LABEL$'),&#10;              ),&#10;            ],&#10;          );&#10;        },&#10;      ),&#10;      child: IndexedStack(&#10;        index: pageIndex,&#10;        children: [&#10;          $CHILD$,&#10;        ],&#10;      ),&#10;    );&#10;  }&#10;}$END$"
+            description="Create a new MacosWindow with Sidebar" toReformat="true" toShortenFQNames="true">
+    <variable name="CLASS" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <variable name="MINWIDTH" expression="" defaultValue="200" alwaysStopAt="true"/>
+    <variable name="STARTWIDTH" expression="" defaultValue="200" alwaysStopAt="true"/>
+    <variable name="ICON" expression="" defaultValue="home" alwaysStopAt="true"/>
+    <variable name="LABEL" expression="" defaultValue="home" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="MacosScaffold()," alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiscaf"
+            value="MacosScaffold(&#10;  children: [&#10;    ContentArea(&#10;      builder: (context, scrollController) {&#10;        return $CHILD$;&#10;      },&#10;    ),&#10;  ],&#10;),$END$"
+            description="Create a new MacosScaffold" toReformat="true" toShortenFQNames="true">
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiscafw"
+            value="class $CLASS$ extends StatelessWidget {&#10;  const $CLASS$({super.key});&#10;  &#10;  @override&#10;  Widget build(BuildContext context) {&#10;    return MacosScaffold(&#10;      children: [&#10;        ContentArea(&#10;          builder: (context, scrollController) {&#10;            return $CHILD$;&#10;          },&#10;        ),&#10;      ],&#10;    );&#10;  }&#10;}$END$"
+            description="Create a new MacosScaffold within a Widget class" toReformat="true" toShortenFQNames="true">
+    <variable name="CLASS" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiscafT"
+            value="MacosScaffold(&#10;  toolBar: ToolBar(&#10;    title: Text('$TITLE$')&#10;  ),&#10;  children: [&#10;    ContentArea(&#10;      builder: (context, scrollController) {&#10;        return $CHILD$;&#10;      },&#10;    ),&#10;  ],&#10;),$END$"
+            description="Create a new MacosScaffold with a Toolbar" toReformat="true" toShortenFQNames="true">
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiscafwT"
+            value="class $CLASS$ extends StatelessWidget {&#10;  const $CLASS$({super.key});&#10;  &#10;  @override&#10;  Widget build(BuildContext context) {&#10;    return MacosScaffold(&#10;      toolBar: const ToolBar(&#10;        title: Text('$TITLE$'),&#10;      ),&#10;      children: [&#10;        ContentArea(&#10;          builder: (context, scrollController) {&#10;            return $CHILD$;&#10;          },&#10;        ),&#10;      ],&#10;    );&#10;  }&#10;}$END$"
+            description="Create a new MacosScaffold with a Toolbar within a Widget class" toReformat="true"
+            toShortenFQNames="true">
+    <variable name="CLASS" expression="camelCase(String)" defaultValue="" alwaysStopAt="true"/>
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiRpanelRight"
+            value="ResizablePane(&#10;  minWidth: $MINWIDTH$,&#10;  startWidth: $STARTWIDTH$,&#10;  resizableSide: ResizableSide.right,&#10;  builder: (context, paneScrollController) {&#10;    return $CHILD$;&#10;  },&#10;),$END$"
+            description="Create a new ResizablePane with a right-resizable side" toReformat="true"
+            toShortenFQNames="true">
+    <variable name="MINWIDTH" expression="" defaultValue="180" alwaysStopAt="true"/>
+    <variable name="STARTWIDTH" expression="" defaultValue="200" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiRpanelLeft"
+            value="ResizablePane(&#10;  minWidth: $MINWIDTH$,&#10;  startWidth: $STARTWIDTH$,&#10;  resizableSide: ResizableSide.left,&#10;  builder: (context, paneScrollController) {&#10;    return $CHILD$;&#10;  },&#10;),$END$"
+            description="Create a new ResizablePane with a left-resizable side" toReformat="true"
+            toShortenFQNames="true">
+    <variable name="MINWIDTH" expression="" defaultValue="180" alwaysStopAt="true"/>
+    <variable name="STARTWIDTH" expression="" defaultValue="200" alwaysStopAt="true"/>
+    <variable name="CHILD" expression="" defaultValue="const SizedBox.shrink()" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiToolbar" value="const ToolBar(&#10;  title: const Text('$TITLE$'), &#10;),$END$"
+            description="Create a new ToolBar" toReformat="true" toShortenFQNames="true">
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muitile" value="const MacosListTile(&#10;  title: const Text('$TITLE$'), &#10;),$END$"
+            description="Create a new MacosListTile" toReformat="true" toShortenFQNames="true">
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiIconButton"
+            value="MacosIconButton(&#10;  icon: const MacosIcon('$ICON$'),&#10;  onPressed: () {}, &#10;),$END$"
+            description="Create a new MacosIconButton" toReformat="true" toShortenFQNames="true">
+    <variable name="ICON" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiIconButtonAsync"
+            value="MacosIconButton(&#10;  icon: const MacosIcon('$ICON$'),&#10;  onPressed: () async {}, &#10;),$END$"
+            description="Create a new MacosIconButton with an async callback" toReformat="true" toShortenFQNames="true">
+    <variable name="ICON" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="muiAlertDialog"
+            value="showMacosAlertDialog(&#10;  context,&#10;  builder: (context) =&gt; MacosAlertDialog(&#10;    appIcon: $ICON$,&#10;    title: Text('$TITLE$'),&#10;    message: Text('$MESSAGE$'),&#10;    primaryButton: PushButton(&#10;      buttonSize: ButtonSize.large,&#10;      child: Text('$BUTTONTEXT$'),&#10;      onPressed: () {},&#10;    ),&#10;  ),&#10;);"
+            description="Show a MacosAlertDialog" toReformat="true" toShortenFQNames="true">
+    <variable name="ICON" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="MESSAGE" expression="" defaultValue="" alwaysStopAt="true"/>
+    <variable name="BUTTONTEXT" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="DART" value="true"/>
+    </context>
+  </template>
+  <template name="rmuiload" value="return const Center(&#10;  child: ProgressCircle(),&#10;);"
+            description="Return a centered MacosProgressCircle" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="DART" value="true"/>
     </context>
   </template>
 </templateSet>
